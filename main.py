@@ -52,18 +52,17 @@ def checkworkdir():
 
 try:
     working_dir = os.path.isdir('./PyTools')
-
     if working_dir:
         print('PyDF Helper v0.1')
         time.sleep(1)
+        input('Please place CSV and PDF into the PyTools Working Directory then press Enter to Continue...')
+        checkworkdir()
     else:
-        print('Preparing for First Time setup...')
-        time.sleep(3)
-        os.mkdir('PyTools')
-        print('Required prerequisites have been prepared, please re-run PyDF Helper...')
-        exit()
-    makeworkdir()
-    input('Please place CSV and PDF into the PyTools Working Directory then press Enter to Continue...')
-    checkworkdir()
+        try:
+            makeworkdir()
+        except:
+            print('Failed to run first time setup... Was I started with Admin Privileges?')
+
 except:
+    print('Failed to run progam... Was I started with Admin Privileges?')
     exit()
